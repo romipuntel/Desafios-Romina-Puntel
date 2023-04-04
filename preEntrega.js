@@ -13,8 +13,8 @@ class Producto {
 
 class ProductManager {
     constructor() {
-        this.productos = [];
-        this.lastId = 0;
+        this.productos = []
+        this.lastId = 1
     }
 
     addProduct(producto) {
@@ -31,7 +31,7 @@ class ProductManager {
         }
 
         // Agregar producto al arreglo
-        this.lastId++;
+        this.lastId++
         this.productos.push({
             id: this.lastId,
             ...producto,
@@ -46,9 +46,9 @@ class ProductManager {
     getProductById(id) {
         const producto = this.productos.find((producto) => producto.id === id);
         if (!producto) {
-            console.error(`Not found: producto con id ${id}`);
+            console.error(`Not found: producto con id ${id}`)
         } else {
-            console.log(`Producto`);
+            console.log(`Producto`)
         }
         return producto
     }
@@ -67,5 +67,4 @@ const producto4 = new Producto("Luca", "vino malbec", "4500", "img/luca", "32474
 productManager.addProduct(producto4)
 const producto5 = new Producto("Sur de los andes", "vino Pinot Noir", "1400", "img/sur", "53694", "30")
 productManager.addProduct(producto5)
-
 

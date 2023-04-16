@@ -12,7 +12,7 @@ class Producto {
     }
 }
 
-class ProductManager {
+export class ProductManager {
     constructor(path) {
         this.path = path
         this.productos = []

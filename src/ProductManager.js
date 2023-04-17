@@ -1,6 +1,16 @@
 import { promises as fs } from 'fs'
 
+class Producto {
+    constructor(title, description, price, thumbnail, code, stock) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.thumbnail = thumbnail;
+        this.code = code;
+        this.stock = stock
 
+    }
+}
 export class ProductManager {
     constructor(path) {
         this.path = path
@@ -53,22 +63,15 @@ export class ProductManager {
 
     }
 
-    async updateProduct(id, { title, description, price, thumbnail, code, stock }) {
-        const prodsJSON = await fs.readFile(this.path, 'utf-8')
-        const prods = JSON.parse(prodsJSON)
-        if (prods.some(prod => prod.id === parseInt(id))) {
-            let index = prods.findIndex(prod => prod.id === parseInt(id))
-            prods[index].title = title
-            prods[index].description = description
-            prods[index].price = price
-            prods[index].thumbnail = thumbnail
-            prods[index].code = code
-            prods[index].stock = stock
-            await fs.writeFile(this.path, JSON.stringify(prods))
-            return "Producto actualizado"
-        } else {
-            return "Producto no encontrado"
+    async updateProduct(id, updateProduct) {
+        const index = this.productos.findIndex((producto) => producto.id === id)
+        if (index !== -1) {
+            const update = { id, ...updateProduct }
+            this.productos[index] = update
+            await this.saveProductsToFile()
+            return update
         }
+        return null
     }
     async deleteProduct(id) {
         const index = this.productos.findIndex((producto) => producto.id === id)

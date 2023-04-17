@@ -1,6 +1,5 @@
 import express from 'express'
 import { ProductManager } from './ProductManager.js'
-import { producto } from './ProductManger.js'
 
 
 const app = express()
@@ -11,31 +10,32 @@ app.use(express.urlencoded({ extended: true }))
 const productManager = new ProductManager('./info.txt')
 
 app.get('/productos', async (req, res) => {
+    const productos = await productManager.getProducts()
     const limit = req.query.limit
     if (limit) {
-        producto = producto.slice(0, limit)
+        productos = productos.slice(0, limit)
     }
 
     res.send(JSON.stringify(productos))
 })
-app.get('/products/:pid', (req, res) => {
+ app.get('/products/:pid', (req, res) => {
     const productId = req.params.pid
-    const products = JSON.parse(fs.readFileSync('productos.json'))
+    const productos = JSON.parse(fs.readFileSync('productos.json'))
 
 
-    const product = productos.find((p) => p.id === productId)
+    const producto = productos.find((p) => p.id === productId)
 
     if (!producto) {
 
         return res.status(404).json({ error: 'Producto no encontrado' });
     }
 
-    res.json(product)
+    res.json(producto)
 });
 
 
 app.get("/product/:id", async (req, res) => {
-    const product = await productManager.getProductById(req.params.id)
+    const producto = await productManager.getProductById(req.params.id)
     res.send(producto)
 })
 

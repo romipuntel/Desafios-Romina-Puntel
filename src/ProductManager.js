@@ -2,11 +2,11 @@ import { promises as fs } from 'fs'
 
 class Producto {
     constructor(title, description, price, thumbnail, code, stock) {
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.thumbnail = thumbnail;
-        this.code = code;
+        this.title = title
+        this.description = description
+        this.price = price
+        this.thumbnail = thumbnail
+        this.code = code
         this.stock = stock
 
     }
@@ -15,7 +15,6 @@ export class ProductManager {
     constructor(path) {
         this.path = path
         this.productos = []
-        this.readProductsFromFile()
     }
 
     static incrementarID() {
@@ -26,15 +25,7 @@ export class ProductManager {
         }
         return this.idIncrement
     }
-    async readProductsFromFile() {
-        try {
-            const data = await fs.readFile(this.path, 'utf-8')
-            this.productos = data.trim().split('\n').map((line) => JSON.parse(line))
-        } catch (err) {
-            console.error(err)
-            this.productos = []
-        }
-    }
+
 
     async saveProductsToFile() {
         try {
@@ -44,23 +35,29 @@ export class ProductManager {
             console.error(err)
         }
     }
+
     async addProduct(producto) {
         const id = this.productos.length > 0 ? this.productos[this.productos.length - 1].id + 1 : 1;
-        const newProduct = { id, ...producto };
-        this.productos.push(newProduct);
-        await this.saveProductsToFile();
-        return newProduct;
+        const newProduct = { id, ...producto }
+        this.productos.push(newProduct)
+        await this.saveProductsToFile()
+        return newProduct
     }
 
+
     async getProducts() {
-        await this.readProductsFromFile()
-        return this.productos;
+        const prods = await fs.readFile(this.path, 'utf-8')
+        return JSON.parse(prods)
     }
 
     async getProductById(id) {
-        await this.readProductsFromFile()
-        return this.productos.find((producto) => producto.id === id)
-
+        const prodsJSON = await fs.readFile(this.path, 'utf-8')
+        const prods = JSON.parse(prodsJSON)
+        if (prods.some(prod => prod.id === parseInt(id))) {
+            return prods.find(prod => prod.id === parseInt(id))
+        } else {
+            return "Producto no encontrado"
+        }
     }
 
     async updateProduct(id, updateProduct) {
@@ -70,8 +67,9 @@ export class ProductManager {
             this.productos[index] = update
             await this.saveProductsToFile()
             return update
+        } else {
+            return "no encontrado"
         }
-        return null
     }
     async deleteProduct(id) {
         const index = this.productos.findIndex((producto) => producto.id === id)

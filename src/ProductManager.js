@@ -95,8 +95,8 @@ const producto5 = new Producto("Sur de los andes", "vino Pinot Noir", "1400", "i
 productManager.addProduct(producto5)
 
 
-productManager.getProducts().then((productos) => console.log(productos))
-productManager.getProductById(1).then((producto) => console.log(producto))
-productManager.updateProduct(1, { title: 'Producto Actualizado', price: 15 }).then((updatedProduct) => console.log(updatedProduct))
-productManager.deleteProduct(2).then((result) => console.log(result))
-productManager.getProducts().then((productos) => console.log(productos))
+//productManager.getProducts().then((productos) => console.log(productos))
+//productManager.getProductById(1).then((producto) => console.log(producto))
+//productManager.updateProduct(1, { title: 'Producto Actualizado', price: 15 }).then((updatedProduct) => console.log(updatedProduct))
+//productManager.deleteProduct(2).then((result) => console.log(result))
+//productManager.getProducts().then((productos) => console.log(productos))

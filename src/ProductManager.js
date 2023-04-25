@@ -38,18 +38,18 @@ export class ProductManager {
     }
 
     async addProduct(producto) {
-        const prodsJSON = await fs.readFile(this.path, 'utf-8')
-        const prods = JSON.parse(prodsJSON)
-        producto.id = ProductManager.incrementarID()
-        prods.push(producto)
-        await fs.writeFile(this.path, JSON.stringify(prods))
+        const id = this.productos.length > 0 ? this.productos[this.productos.length - 1].id + 1 : 1;
+        const newProduct = { id, ...producto }
+        this.productos.push(newProduct)
+        await this.saveProductsToFile()
+
         return "Producto creado"
     }
 
 
     async getProducts() {
         const product = await fs.readFile(this.path, 'utf-8')
-        return JSON.parse(prods)
+        return product
     }
 
     async getProductById(id) {
@@ -73,24 +73,20 @@ export class ProductManager {
             prods[index].thumbnail = thumbnail
             prods[index].code = code
             prods[index].stock = stock
-            await fs.writeFile(this.path, JSON.stringify(prods))
+            await this.saveProductsToFile()
             return "Producto actualizado"
         } else {
             return "Producto no encontrado"
         }
     }
     async deleteProduct(id) {
-        const prodsJSON = await fs.readFile(this.path, 'utf-8')
-        const prods = JSON.parse(prodsJSON)
-        if (prods.some(prod => prod.id === parseInt(id))) {
-            const prodsFiltrados = prods.filter(prod => prod.id !== parseInt(id))
-            await this.saveProductsToFile(prodsFiltrados)
-            return "Producto eliminado"
-        } else {
-            return "Producto no encontrado"
-        }
-    }
+        const index = this.productos.findIndex((producto) => producto.id === id)
+        if (index !== -1)
+            this.productos.splice(index, 1)
+        await this.saveProductsToFile()
+        return "Producto eliminado"
 
+    }
 }
 
 

@@ -1,5 +1,1 @@
-{"id":1,"title":"El enemigo Malbec","description":"vino malbec","price":"3000","thumbnail":"img/enemigo","code":"23234","stock":"45"}
-{"id":2,"title":"Alamos","description":"vino malbec","price":"1500","thumbnail":"img/alamos","code":"16346","stock":"10"}
-{"id":3,"title":"Adriana Zapata","description":"vino blanco","price":"3400","thumbnail":"img/zapata","code":"12674","stock":"30"}
-{"id":4,"title":"Luca","description":"vino malbec","price":"4500","thumbnail":"img/luca","code":"32474","stock":"25"}
-{"id":5,"title":"Sur de los andes","description":"vino Pinot Noir","price":"1400","thumbnail":"img/sur","code":"53694","stock":"30"}
+[]

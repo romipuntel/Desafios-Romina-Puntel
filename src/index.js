@@ -18,20 +18,12 @@ app.get('/products', async (req, res) => {
 
     res.send(JSON.stringify(productos))
 })
-app.get('/products/:pid', (req, res) => {
-    const productId = req.params.pid
-    const productos = JSON.parse(fs.readFileSync('productos.json'))
 
+app.get('/products/:pid', async (req, res) => {
+    const product = await productManager.getProductById(req.params.id)
+    res.send(product)
+})
 
-    const producto = productos.find((p) => p.id === productId)
-
-    if (!producto) {
-
-        return res.status(404).json({ error: 'Producto no encontrado' });
-    }
-
-    res.json(producto)
-});
 
 
 app.post("/product", async (req, res) => {

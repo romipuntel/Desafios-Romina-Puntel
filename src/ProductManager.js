@@ -27,10 +27,11 @@ export class ProductManager {
     }
 
 
+
     async saveProductsToFile() {
         try {
-            const data = this.productos.map((productos) => JSON.stringify(productos)).join('\n')
-            await fs.writeFile(this.path, data)
+            const data = this.productos.map((productos) => JSON.stringify(productos))
+            await fs.writeFile(this.path, JSON.stringify(this.productos, null, 2), "utf-8")
         } catch (err) {
             console.error(err)
         }
@@ -46,8 +47,8 @@ export class ProductManager {
 
 
     async getProducts() {
-        const prods = await fs.readFile(this.path, 'utf-8')
-        return JSON.parse(prods)
+        const product = await fs.readFile(this.path, 'utf-8')
+        return product
     }
 
     async getProductById(id) {
@@ -95,8 +96,3 @@ const producto5 = new Producto("Sur de los andes", "vino Pinot Noir", "1400", "i
 productManager.addProduct(producto5)
 
 
-//productManager.getProducts().then((productos) => console.log(productos))
-//productManager.getProductById(1).then((producto) => console.log(producto))
-//productManager.updateProduct(1, { title: 'Producto Actualizado', price: 15 }).then((updatedProduct) => console.log(updatedProduct))
-//productManager.deleteProduct(2).then((result) => console.log(result))
-//productManager.getProducts().then((productos) => console.log(productos))

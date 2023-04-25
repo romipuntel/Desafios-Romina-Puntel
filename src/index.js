@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }))
 
 const productManager = new ProductManager('./info.txt')
 
-app.get('/products', async (req, res) => {
+app.get('/product', async (req, res) => {
     const productos = await productManager.getProducts()
     const limit = req.query.limit
     if (limit) {

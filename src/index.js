@@ -16,7 +16,7 @@ app.get('/product', async (req, res) => {
         productos = productos.slice(0, limit)
     }
 
-    res.send(JSON.stringify(productos))
+    res.send(productos)
 })
 
 app.get('/product/:pid', async (req, res) => {

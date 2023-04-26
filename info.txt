@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Alamo Malbec",
+    "description": "vino malbec",
+    "price": 2000,
+    "code": "23579"
+  },
+  {
+    "id": 2,
+    "title": "El Enemigo malbec",
+    "description": "vino malbec",
+    "price": 4000,
+    "code": "23509"
+  }
+]

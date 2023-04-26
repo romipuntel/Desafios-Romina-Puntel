@@ -1,16 +1,6 @@
 import { promises as fs } from 'fs'
 
-class Producto {
-    constructor(title, description, price, thumbnail, code, stock) {
-        this.title = title
-        this.description = description
-        this.price = price
-        this.thumbnail = thumbnail
-        this.code = code
-        this.stock = stock
 
-    }
-}
 export class ProductManager {
     constructor(path) {
         this.path = path
@@ -30,7 +20,7 @@ export class ProductManager {
 
     async saveProductsToFile() {
         try {
-            const data = this.productos.map((productos) => JSON.stringify(productos))
+            //const data = this.productos.map((productos) => JSON.stringify(productos))
             await fs.writeFile(this.path, JSON.stringify(this.productos, null, 2), "utf-8")
         } catch (err) {
             console.error(err)

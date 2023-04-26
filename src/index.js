@@ -19,7 +19,7 @@ app.get('/product', async (req, res) => {
     res.send(productos)
 })
 
-app.get('/product/:pid', async (req, res) => {
+app.get('/product/:id', async (req, res) => {
     const product = await productManager.getProductById(req.params.id)
     res.send(product)
 })
@@ -32,7 +32,7 @@ app.post("/product", async (req, res) => {
     res.send("Producto creado")
 })
 
-app.put("/product/:pid", async (req, res) => {
+app.put("/product/:id", async (req, res) => {
     const id = req.params.id
     const { title, description, price, thumbnail, code, stock } = req.body
 

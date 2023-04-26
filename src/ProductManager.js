@@ -91,15 +91,5 @@ export class ProductManager {
 
 
 
-//const producto1 = new Producto("El enemigo Malbec", "vino malbec", "3000", "img/enemigo", "23234", "45")
-//productManager.addProduct(producto1)
-//const producto2 = new Producto("Alamos", "vino malbec", "1500", "img/alamos", "16346", "10")
-//productManager.addProduct(producto2)
-//const producto3 = new Producto("Adriana Zapata", "vino blanco", "3400", "img/zapata", "12674", "30")
-//productManager.addProduct(producto3)
-//const producto4 = new Producto("Luca", "vino malbec", "4500", "img/luca", "32474", "25")
-//productManager.addProduct(producto4)
-//const producto5 = new Producto("Sur de los andes", "vino Pinot Noir", "1400", "img/sur", "53694", "30")
-//productManager.addProduct(producto5)
 
 

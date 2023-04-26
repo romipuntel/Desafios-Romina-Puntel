@@ -19,7 +19,7 @@ app.get('/product', async (req, res) => {
     res.send(JSON.stringify(productos))
 })
 
-app.get('/products/:pid', async (req, res) => {
+app.get('/product/:pid', async (req, res) => {
     const product = await productManager.getProductById(req.params.id)
     res.send(product)
 })
